@@ -6,7 +6,7 @@ Lecturer: Ş. İlker Birbil · Laptop labs: Batuhan Ataş (b.atas@uva.nl)
 
 ## How to use
 
-Open a notebook in Google Colab with the links below, then choose **File → Save a copy in Drive** and work in your copy. The setup guide on Canvas explains the details, including how to work on your own laptop instead.
+Open a notebook in Google Colab with the links below, then choose **File → Save a copy in Drive** and work in your copy. The Laptop lab guide on Canvas (Week 1) explains the details, including how to work on your own laptop instead.
 
 | Notebook | When | Open |
 |---|---|---|
@@ -22,3 +22,5 @@ Open a notebook in Google Colab with the links below, then choose **File → Sav
 | `data/cbs_provinces.csv` | Statistics Netherlands (CBS) figures for the 12 provinces, 2003–2017 |
 
 The notebooks read the data directly from this repository, so you do not need to download them.
+
+**Sources.** The student survey is synthetic: it was generated for this course and describes no real students. `cbs_provinces.csv` contains open data of Statistics Netherlands (CBS, StatLine), selected and reshaped for teaching; source: CBS. CBS does not endorse this course.
