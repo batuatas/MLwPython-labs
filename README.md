@@ -24,5 +24,3 @@ Open a notebook in Google Colab with the links below, then choose **File → Sav
 | `data/cbs_provinces.csv` | Statistics Netherlands (CBS) figures for the 12 provinces, 2003–2017 |
 
 The notebooks read the data directly from this repository, so you do not need to download them.
-
-**Sources.** The student survey is synthetic: it was generated for this course and describes no real students. `anscombe.csv` is from Anscombe (1973), *Graphs in statistical analysis*, The American Statistician 27(1). `phds_arcades.csv` holds the series used by Müller (2017) in Applied Machine Learning, after Tyler Vigen's *Spurious Correlations*. `cbs_provinces.csv` contains open data of Statistics Netherlands (CBS, StatLine), selected and reshaped for teaching; source: CBS. CBS does not endorse this course.
