@@ -294,31 +294,6 @@ def check_4_1():
 @_check
 def check_4_2():
     df = _data("df")
-    rates = _get("rates")
-    want = df.groupby("program")["passed"].mean()
-    if not isinstance(rates, pd.Series):
-        return _not_yet("<code>rates</code> should be one number per program: "
-                        "<code>df.groupby(\"program\")[\"passed\"].mean()</code>.")
-    if set(rates.index) != set(want.index) or not np.allclose(rates[want.index], want):
-        if np.allclose(rates.reindex(want.index), df.groupby("program")["grade"].mean()):
-            return _not_yet("These are the mean <em>grades</em>. We want the share that "
-                            "<em>passed</em>: average the column <code>passed</code>.")
-        return _not_yet("<code>rates</code> is not the share of passed students per program. "
-                        "The mean of True/False is the share of True.")
-    if list(rates.index) != list(want.sort_values().index):
-        return _not_yet("The numbers are right. Now sort them with <code>.sort_values()</code>, "
-                        "so that the ranking is visible.")
-    ax = _axes()
-    if len(_bars(ax)) != len(want):
-        return _not_yet("Draw the bars with <code>ax.barh(rates.index, rates.values)</code>.")
-    if not _labels_ok(ax):
-        return
-    _ok(f"From {want.min():.0%} in {want.idxmin()} to {want.max():.0%} in {want.idxmax()}.")
-
-
-@_check
-def check_4_3():
-    df = _data("df")
     corr, strongest, second = _get("corr"), _get("strongest"), _get("second")
     cols = ["age", "study_hours", "social_media_hours", "sleep_hours", "satisfaction", "grade"]
     if not isinstance(corr, pd.DataFrame) or corr.shape != (6, 6):
