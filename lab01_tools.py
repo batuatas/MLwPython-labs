@@ -341,6 +341,55 @@ def check_5():
     _ok(f"\"{title}\": a reader gets the point without reading your code.")
 
 
+# ----------------------------------------------- if you finish early: repair --
+
+@_check
+def check_repair():
+    raw, df = _data("raw"), _data("df")
+    rep = _get("repaired")
+    if not isinstance(rep, pd.DataFrame):
+        return _not_yet("<code>repaired</code> should be a table. Start with "
+                        "<code>repaired = raw.drop_duplicates().copy()</code>.")
+    if len(rep) == len(raw):
+        return _not_yet(f"Still {len(raw)} rows. Step 1: drop the duplicates with "
+                        f"<code>raw.drop_duplicates()</code>.")
+    if len(rep) != len(df):
+        return _not_yet(f"{len(rep)} rows, but there are {len(df)} different students. "
+                        f"Drop only the duplicate rows, nothing else.")
+    if rep["grade"].dtype.kind not in "fi":
+        return _not_yet("<code>grade</code> is still text. Step 2: "
+                        "<code>repaired[\"grade\"].str.replace(\",\", \".\").astype(float)</code>.")
+    if not np.allclose(rep["grade"].to_numpy(float), df["grade"].to_numpy(float)):
+        return _not_yet("<code>grade</code> is a number now, but the values are not right. "
+                        "Replace the comma by a point, not by nothing.")
+    s = rep["study_hours"].to_numpy(float)
+    clean = df["study_hours"].to_numpy(float)
+    if np.median(s) > 40:
+        return _not_yet("You multiplied all study hours by 7. Only the answers below 3 are per day.")
+    if (s < 3).sum() > 1:
+        return _not_yet(f"{(s < 3).sum()} students still study less than 3 hours a week. Step 3: "
+                        f"multiply those answers by 7 with <code>.loc</code>.")
+    if rep["age"].max() > 100:
+        return _not_yet("Someone is still more than 100 years old. Step 4: set that age to "
+                        "<code>np.nan</code>; we cannot know the true value.")
+    if rep["sleep_hours"].max() > 24:
+        return _not_yet("Someone still sleeps more than 24 hours a night. Step 4: set that value "
+                        "to <code>np.nan</code>.")
+    wrong = np.abs(s - clean) > 0.5
+    n_missing = int(rep.isna().sum().sum())
+    if wrong.sum() == 1 and clean[wrong][0] < 3:
+        catch = (f"One catch: one student really studies {clean[wrong][0]:g} hours a week, and your rule "
+                 f"made it {s[wrong][0]:g}. Every repair rule has exceptions.")
+    elif wrong.sum() == 0:
+        catch = "Your rule even avoided the trap: one student really studies 2.9 hours a week."
+    else:
+        catch = (f"{int(wrong.sum())} study-hour values differ from the cleaned file by more than half "
+                 f"an hour: look at your rule again.")
+    _ok(f"{len(rep)} students, grades as numbers, per-day answers converted. {catch} "
+        f"Your table has {n_missing} missing values, the cleaned file none: it knew the true values "
+        f"because the data are synthetic. With real data, nobody does (Lecture 7).")
+
+
 # ------------------------------------------------------------------ slider ---
 
 @public
