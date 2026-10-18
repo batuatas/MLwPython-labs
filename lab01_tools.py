@@ -325,10 +325,60 @@ def check_4_2():
         f"Now the question below: what does the second one mean?")
 
 
-# ------------------------------------------------ Task 5: one plot for a reader --
+# --------------------------------------------- Task 5: lines and two axes --
+
+_ECON = [9, 10, 10, 11, 12, 14, 18]
+_PSYCH = [8, 8, 9, 9, 11, 13, 17]
+_PHDS = [1050, 1010, 919, 993, 1076, 1205, 1325, 1393, 1399, 1554]
+_ARCADES = [1196, 1176, 1269, 1240, 1307, 1435, 1601, 1654, 1803, 1734]
+
+
+def _line_ys(ax):
+    return [np.asarray(l.get_ydata(), dtype=float) for l in ax.lines]
+
+
+def _has(ys, want):
+    return any(len(y) == len(want) and np.allclose(y, want) for y in ys)
+
 
 @_check
-def check_5():
+def check_5_1():
+    ax = _axes()
+    ys = _line_ys(ax)
+    if len(ys) < 2:
+        return _not_yet("Draw two lines: <code>ax.plot(weeks, econ, ...)</code> and "
+                        "<code>ax.plot(weeks, psych, ...)</code>.")
+    if not (_has(ys, _ECON) and _has(ys, _PSYCH)):
+        return _not_yet("The lines should show <code>econ</code> and <code>psych</code> "
+                        "against <code>weeks</code>.")
+    if ax.get_legend() is None:
+        return _not_yet("Which line is which? Give each line a <code>label=...</code> and add "
+                        "<code>ax.legend()</code>.")
+    if not _labels_ok(ax):
+        return
+    _ok("Both programs study more as the exam comes closer; Economics a little more all along.")
+
+
+@_check
+def check_5_2():
+    ax1, ax2 = _axes("ax1"), _axes("ax2")
+    if ax2 is ax1 or ax2.figure is not ax1.figure:
+        return _not_yet("<code>ax2</code> should be a second y-axis of the same plot: "
+                        "<code>ax2 = ax1.twinx()</code>.")
+    y1, y2 = _line_ys(ax1), _line_ys(ax2)
+    if not ((_has(y1, _PHDS) and _has(y2, _ARCADES)) or (_has(y1, _ARCADES) and _has(y2, _PHDS))):
+        return _not_yet("Draw one series on each axis: <code>ax1.plot(years, phds)</code> and "
+                        "<code>ax2.plot(years, arcades, color=\"red\")</code>.")
+    if not ax1.get_ylabel().strip() or not ax2.get_ylabel().strip():
+        return _not_yet("Label both y-axes, with units: the reader must know which axis "
+                        "belongs to which line.")
+    _ok("Two series, two scales, and the lines nearly overlap. Now the next cell.")
+
+
+# ------------------------------------------------ Task 6: your own question --
+
+@_check
+def check_6():
     ax = _axes()
     if not (ax.lines or ax.collections or ax.patches or ax.images):
         return _not_yet("The plot is still empty.")
