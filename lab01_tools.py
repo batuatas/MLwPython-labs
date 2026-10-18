@@ -228,7 +228,8 @@ def check_2():
         return _not_yet("<code>max_age</code> is not right. Use <code>raw[\"age\"].max()</code>.")
     _ok(f"{n_missing} missing values, {n_dup} duplicate rows (so {len(raw) - n_dup} students, "
         f"not {len(raw)}), someone who sleeps {max_sleep:g} hours a night and someone who is "
-        f"{max_age} years old.")
+        f"{max_age} years old: the most rested and the most patient students in Amsterdam? "
+        f"The question below.")
 
 
 # ------------------------------------------- Task 3: what only a plot shows --
