@@ -250,7 +250,7 @@ def check_3_1():
                         f"Use <code>bins=30</code>.")
     if not _labels_ok(ax):
         return
-    _ok("Look at the far left. Is that one group of students, or two? The slider below helps.")
+    _ok("Look at the far left: a separate group of students. Who are they? The slider below shows why the number of bins matters.")
 
 
 @_check
