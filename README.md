@@ -19,6 +19,5 @@ Open a notebook in Google Colab with the links below, then choose **File → Sav
 |---|---|
 | `data/student_survey.csv` | synthetic student survey used in the lectures (300 students) |
 | `data/student_survey_raw.csv` | the same survey with typical data-quality problems |
-| `data/cbs_provinces.csv` | Statistics Netherlands (CBS) figures for the 12 provinces, 2003–2017 |
 
 The notebooks read the data directly from this repository, so you do not need to download them.
