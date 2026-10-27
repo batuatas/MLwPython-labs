@@ -8,8 +8,12 @@ You do not need to read it to do the lab. Each check_... function looks at
 the variables and plots you made in the notebook and tells you whether they
 are right, or what to look at. (Reading it will show you the answers.)
 
-Data: Inside Airbnb (insideairbnb.com), Amsterdam, 16 September 2026, CC BY 4.0.
+The data are downloaded directly from Inside Airbnb (insideairbnb.com):
+Amsterdam, 16 September 2026, licensed under CC BY 4.0. They are downloaded
+once per session; the notebook and the checks share the same copy.
 """
+
+import os
 
 import numpy as np
 import pandas as pd
@@ -31,25 +35,62 @@ def public(f):
     return f
 
 
-BASE = "https://raw.githubusercontent.com/batuatas/MLwPython-labs/main/"
+# Inside Airbnb, Amsterdam, 16 September 2026 (LAB01_DATA can point to a local copy for testing)
+AIRBNB = os.environ.get(
+    "LAB01_DATA",
+    "https://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2026-09-16/")
 
-# The data, loaded once, so that the checks do not depend on changes you make.
+# The columns we use, and their names in the lab (the full file has 90 columns).
+_COLUMNS = {"id": "id", "neighbourhood_cleansed": "neighbourhood", "room_type": "room_type",
+            "property_type": "property_type", "accommodates": "accommodates",
+            "bedrooms": "bedrooms", "beds": "beds", "price": "price",
+            "minimum_nights": "minimum_nights", "maximum_nights": "maximum_nights",
+            "availability_365": "availability_365", "number_of_reviews": "number_of_reviews",
+            "first_review": "first_review", "last_review": "last_review",
+            "review_scores_rating": "review_scores_rating",
+            "host_is_superhost": "host_is_superhost",
+            "calculated_host_listings_count": "host_listings", "license": "license",
+            "latitude": "latitude", "longitude": "longitude"}
+
+# The data, downloaded once, so that the checks do not depend on changes you make.
 _DATA = {}
+
+
+def _download(name):
+    try:
+        if name == "listings":
+            df = pd.read_csv(AIRBNB + "data/listings.csv.gz")
+            return df[list(_COLUMNS)].rename(columns=_COLUMNS)
+        if name == "reviews":
+            return pd.read_csv(AIRBNB + "visualisations/reviews.csv", parse_dates=["date"])
+    except Exception as e:
+        raise RuntimeError(
+            "The data could not be downloaded from Inside Airbnb. Check your internet "
+            "connection and run the cell again; if it still fails, ask the tutor.") from e
 
 
 def _data(name):
     if name not in _DATA:
-        base = _ns().get("BASE", BASE)  # the BASE of the notebook, if it has one
-        if name == "listings":
-            _DATA[name] = pd.read_csv(base + "data/airbnb_listings.csv")
-        elif name == "priced":  # listings with a price, as a number
+        if name == "priced":  # listings with a price, as a number
             df = _data("listings")
             df["price"] = df["price"].str.replace("$", "", regex=False) \
                                      .str.replace(",", "", regex=False).astype(float)
             _DATA[name] = df[df["price"].notna()]
-        elif name == "reviews":
-            _DATA[name] = pd.read_csv(base + "data/airbnb_reviews_daily.csv", parse_dates=["date"])
+        else:
+            _DATA[name] = _download(name)
     return _DATA[name].copy()
+
+
+@public
+def load_listings():
+    """The Amsterdam listings of Inside Airbnb, with the 20 columns of this lab."""
+    return _data("listings")
+
+
+@public
+def load_reviews():
+    """One row per review: the listing and the date."""
+    return _data("reviews")
 
 
 def _prices():
@@ -180,7 +221,10 @@ def setup_ok():
     import seaborn as sns
     lines = [f"pandas {pd.__version__}", f"matplotlib {matplotlib.__version__}",
              f"seaborn {sns.__version__}"]
-    listings = _data("listings")
+    try:
+        listings = _data("listings")
+    except RuntimeError as e:
+        return _not_yet(str(e))
     _ok(f"You are ready. The data has {len(listings):,} Airbnb listings in Amsterdam.<br>"
         f"<span style='color:#555'>{' · '.join(lines)}</span>")
 
@@ -300,7 +344,7 @@ def check_3d():
 @_check
 def check_4():
     reviews = _data("reviews")
-    monthly = reviews.set_index("date")["reviews"].resample("MS").sum()
+    monthly = reviews.set_index("date").resample("MS").size()
     ax = _axes()
     ys = [np.asarray(l.get_ydata(), dtype=float) for l in ax.lines]
     if not any(len(y) == len(monthly) and np.allclose(y, monthly.values) for y in ys):
