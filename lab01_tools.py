@@ -306,10 +306,35 @@ def check_3b():
     _ok("Three maps, three kinds of colormap.")
 
 
-# ---------------------------------------------- Task 3: correlation heatmap --
+# ---------------------------------------------- Task 3: bars per district --
 
 @_check
 def check_3c():
+    clean = _get("clean")
+    if "district" not in clean:
+        return _not_yet("<code>clean</code> has no column <code>district</code>: run the cell that adds it, above the maps.")
+    ax = _axes()
+    bars = _bars(ax)
+    med = clean.groupby("district")["price"].median()
+    if len(bars) != len(med):
+        return _not_yet(f"I count {len(bars)} bars, not {len(med)}, one per district: "
+                        f"<code>ax.barh(medians.index, medians.values)</code>.")
+    widths = np.array([b.get_width() for b in bars])
+    if np.allclose(np.sort(widths), np.sort(clean.groupby("district")["price"].mean())):
+        return _not_yet("These are the means. After the outliers of Task 2, is the mean the fairer "
+                        "summary? Use <code>.median()</code>.")
+    if not np.allclose(np.sort(widths), np.sort(med)):
+        return _not_yet("The bars are not the median price per district: group <code>clean</code> by "
+                        "<code>\"district\"</code>, take <code>[\"price\"]</code> and <code>.median()</code>.")
+    if not (np.all(np.diff(widths) >= 0) or np.all(np.diff(widths) <= 0)):
+        return _not_yet("Sort the bars, so that the ranking shows at once: <code>.sort_values()</code>.")
+    _ok("One sorted bar per district.")
+
+
+# ---------------------------------------------- Task 3: correlation heatmap --
+
+@_check
+def check_3d():
     ax = _axes()
     if not ax.images:
         return _not_yet("There is no heatmap yet. Fill in the dots in <code>ax.imshow(...)</code>.")
@@ -325,10 +350,39 @@ def check_3c():
     _ok("A correlation heatmap with 0 in the middle color.")
 
 
+# ---------------------------------------- Task 3: a feature against the label --
+
+@_check
+def check_3e():
+    clean = _get("clean")
+    feature = _get("feature")
+    if not isinstance(feature, str) or feature not in clean:
+        return _not_yet("<code>feature</code> should be the name of a column of <code>clean</code>, in "
+                        "quotes, for example <code>\"bedrooms\"</code>.")
+    ax = _axes()
+    xy = _scatter_xy(ax)
+    if xy is None:
+        return _not_yet("There are no dots yet: <code>ax.scatter(clean[feature], clean[\"price\"], alpha=0.1)</code>.")
+    pair = clean[[feature, "price"]].dropna().to_numpy(float)
+    xy = np.asarray(xy, dtype=float)
+    xy = xy[~np.isnan(xy).any(axis=1)]          # dots with a missing value are not drawn
+    if xy.shape == pair.shape and np.allclose(np.sort(xy[:, ::-1], 0), np.sort(pair, 0)):
+        return _not_yet("The axes are swapped: the label, the price, goes on the y-axis.")
+    if xy.shape != pair.shape or not np.allclose(np.sort(xy, 0), np.sort(pair, 0)):
+        return _not_yet(f"The dots are not <code>{feature}</code> against the price of <code>clean</code>.")
+    coll = [c for c in ax.collections if len(c.get_offsets())][0]
+    alpha = coll.get_alpha()
+    if alpha is None or alpha >= 1:
+        return _not_yet("Many dots lie on top of each other. Make them transparent with "
+                        "<code>alpha=...</code>, a number between 0 and 1.")
+    corr = clean[feature].corr(clean["price"])
+    _ok(f"{feature} against the price: correlation {corr:.2f}. Does the plot look like that?")
+
+
 # ----------------------------------------- Task 3: a plot for someone else --
 
 @_check
-def check_3d():
+def check_3f():
     ax = _axes()
     if not _labels_ok(ax, title=True):
         return
