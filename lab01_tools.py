@@ -353,3 +353,31 @@ def check_own():
         return _not_yet(f"Your title is \"{title}\". A good title states the finding in a few "
                         f"words, for example \"Whole homes cost almost twice as much\".")
     _ok(f"\"{title}\": a reader gets the point without reading your code.")
+
+
+# ------------------------------------------- friendly message for unfilled dots --
+
+def _mentions_ellipsis(err):
+    seen = set()
+    while err is not None and id(err) not in seen:
+        seen.add(id(err))
+        if "llipsis" in str(err):
+            return True
+        err = err.__cause__ or err.__context__
+    return False
+
+
+def _unfilled_dots_handler(shell, etype, value, tb, tb_offset=None):
+    if _mentions_ellipsis(value):
+        _not_yet("This cell still contains the dots <code>...</code>. Fill them in, then run the "
+                 "cell again. Stuck? Unfold the hint below the cell.")
+        return None
+    return shell.showtraceback((etype, value, tb), tb_offset=tb_offset)
+
+
+try:
+    from IPython import get_ipython as _get_ipython
+    if _get_ipython() is not None:
+        _get_ipython().set_custom_exc((Exception,), _unfilled_dots_handler)
+except ImportError:
+    pass
