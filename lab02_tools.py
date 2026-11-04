@@ -44,7 +44,7 @@ AIRBNB = os.environ.get(
     "https://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2026-09-16/")
 
 FEATURES = ["accommodates", "bedrooms", "beds", "entire_home", "latitude", "longitude",
-            "minimum_nights", "availability_365", "number_of_reviews", "review_scores_rating",
+            "km_to_center", "minimum_nights", "availability_365", "number_of_reviews", "review_scores_rating",
             "host_listings", "superhost"]
 
 N_TRAIN, N_TEST = 500, 1500
@@ -68,6 +68,10 @@ def _prepare():
     df["entire_home"] = (df["room_type"] == "Entire home/apt").astype(int)
     df["superhost"] = (df["host_is_superhost"] == "t").astype(int)
     df["host_listings"] = df["calculated_host_listings_count"]
+    # distance to Dam Square (52.3731 N, 4.8932 E) in km; one degree of longitude is
+    # shorter than one of latitude at this latitude
+    df["km_to_center"] = np.hypot((df["longitude"] - 4.8932) * 111.32 * np.cos(np.radians(52.3731)),
+                                  (df["latitude"] - 52.3731) * 110.57)
     df = df.dropna(subset=FEATURES)            # missing values: Lecture 7; here we drop them
     test = df.sample(N_TEST, random_state=1)
     train = df.drop(test.index).sample(N_TRAIN, random_state=2)
@@ -87,7 +91,7 @@ def _data(name):
 
 @public
 def load_training_data():
-    """The 500 training listings: the features X (on one scale) and the prices y (euros)."""
+    """The 500 training listings: the 13 features X (on one scale) and the prices y (euros)."""
     return _data("train")
 
 
