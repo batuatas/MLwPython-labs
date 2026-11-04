@@ -5,7 +5,7 @@ Laptop labs: Batuhan Atas (b.atas@uva.nl).
 
 The lab notebook downloads this file and runs `from lab02_tools import *`.
 You do not need to read it to do the lab. It loads the training data, checks
-your submission, and keeps the boss's test set locked until the tutor gives
+your submission, and keeps the test set locked until the tutor gives
 the password. (Reading it will spoil the surprise.)
 
 The data are downloaded directly from Inside Airbnb (insideairbnb.com):
@@ -283,15 +283,15 @@ def check_submission():
         return _not_yet("Your model has not learned from all 500 training listings. Refit it on "
                         "all the training data: <code>my_model.fit(X, y)</code>.")
     _ok(f"Your submission: <b>{_model_text(model)}</b>, chosen by <b>{strategy}</b>, with an expected "
-        f"R² of <b>{estimate:.2f}</b> on new listings. Now wait for the boss. Meanwhile, compare your choice "
+        f"R² of <b>{estimate:.2f}</b> on new listings. Now wait until the tutor unlocks the test set. Meanwhile, compare your choice "
         f"with your neighbor's.")
 
 
-# --------------------------------------------------------------- the boss --
+# ------------------------------------------------------------- the test set --
 
 @public
-def boss_test_set(password):
-    """The boss's test set: 1,500 listings that your model has never seen."""
+def unlock_test_set(password):
+    """The test set: 1,500 listings that your model has never seen."""
     if password is Ellipsis or not isinstance(password, str) or password.strip() in ("", "..."):
         return _not_yet("The test set is still locked. Wait for the password on the screen, "
                         "and type it in quotes."), None
@@ -311,12 +311,12 @@ class _Locked(Exception):
 def check_unlocked(X_test):
     """Stop a cell while the test set is still locked."""
     if X_test is None:
-        raise _Locked("The test set is still locked. Wait for the boss, then unlock it in Task 3.")
+        raise _Locked("The test set is still locked. Wait for the password, then unlock it in Task 3.")
 
 
 @public
 def report(model, estimate, X_test, y_test):
-    """Your estimate against the score on the boss's test set."""
+    """Your estimate against the score on the test set."""
     if X_test is None:
         return _not_yet("Unlock the test set first, with the password on the screen.")
     from sklearn.metrics import mean_absolute_error
@@ -329,7 +329,7 @@ def report(model, estimate, X_test, y_test):
     _box("#25567B", "#EAF1F7",
          f"<b>{_model_text(model)}</b><br>"
          f"Your estimate: R² = {float(estimate):.2f}<br>"
-         f"On the boss's test set: <b>R² = {test_r2:.2f}</b>, {word} your estimate.<br>"
+         f"On the test set: <b>R² = {test_r2:.2f}</b>, {word} your estimate.<br>"
          f"On average, your predictions are €{mae:.0f} away from the true price per night; "
          f"always guessing the average price would be €{guess:.0f} away. "
          f"A typical listing costs about €{y_test.median():.0f} per night.<br>"
