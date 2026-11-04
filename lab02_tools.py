@@ -262,9 +262,10 @@ def check_submission():
     if name not in _CANDIDATES:
         return _not_yet(f"<code>my_model</code> is a <code>{name}</code>. Choose one of "
                         f"<code>KNeighborsRegressor</code>, <code>Ridge</code> or <code>Lasso</code>.")
-    if not isinstance(strategy, str) or len(strategy.split()) < 2 or "..." in strategy:
-        return _not_yet("Describe in a few words, in quotes, how you chose your model, for example "
-                        "<code>\"5-fold cross-validation\"</code>.")
+    if strategy is Ellipsis or str(strategy).strip() in ("", "..."):
+        return _not_yet("Write in <code>my_strategy</code>, in quotes, how you chose your model, "
+                        "in your own words.")
+    strategy = str(strategy).strip()
     try:
         estimate = float(estimate)
     except (TypeError, ValueError):
