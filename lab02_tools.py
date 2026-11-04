@@ -282,7 +282,8 @@ def check_submission():
         return _not_yet("Your model has not learned from all 500 training listings. Refit it on "
                         "all the training data: <code>my_model.fit(X, y)</code>.")
     _ok(f"Your submission: <b>{_model_text(model)}</b>, chosen by <b>{strategy}</b>, with an expected "
-        f"R² of <b>{estimate:.2f}</b> on new listings. Now wait for the boss.")
+        f"R² of <b>{estimate:.2f}</b> on new listings. Now wait for the boss. Meanwhile, compare your choice "
+        f"with your neighbor's.")
 
 
 # --------------------------------------------------------------- the boss --
@@ -320,13 +321,17 @@ def report(model, estimate, X_test, y_test):
     from sklearn.metrics import mean_absolute_error
     test_r2 = model.score(X_test, y_test)
     mae = mean_absolute_error(y_test, model.predict(X_test))
+    _, y_train = _data("train")
+    guess = mean_absolute_error(y_test, np.full(len(y_test), y_train.mean()))   # always the average price
     gap = test_r2 - float(estimate)
     word = "higher than" if gap > 0.02 else "lower than" if gap < -0.02 else "close to"
     _box("#25567B", "#EAF1F7",
          f"<b>{_model_text(model)}</b><br>"
          f"Your estimate: R² = {float(estimate):.2f}<br>"
          f"On the boss's test set: <b>R² = {test_r2:.2f}</b>, {word} your estimate.<br>"
-         f"On average, your predictions are €{mae:.0f} away from the true price per night.<br>"
+         f"On average, your predictions are €{mae:.0f} away from the true price per night; "
+         f"always guessing the average price would be €{guess:.0f} away. "
+         f"A typical listing costs about €{y_test.median():.0f} per night.<br>"
          f"Tell the tutor your model, how you chose it, your estimate and your test score.")
     return test_r2
 # ------------------------------------------- friendly message for unfilled dots --
