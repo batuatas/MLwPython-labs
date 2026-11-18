@@ -13,6 +13,8 @@ Open a notebook in Google Colab with the links below, then choose **File → Sav
 | Setup check | before the first lab | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/lab00_setup_check.ipynb) |
 | Lab 1: Visualization | Thursday, October 29 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/lab01.ipynb) |
 | Lab 2: Nearest neighbors and linear regression | Thursday, November 5 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/lab02.ipynb) |
+| Lab 3: Linear classification and preprocessing | Thursday, November 12 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/lab03.ipynb) |
+| Lab 4: Missing values, trees and forests | Thursday, November 19 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/lab04.ipynb) |
 | Programming assignment 1 (template) | due Sunday, November 15 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/assignment1.ipynb) |
 
 ## Data
