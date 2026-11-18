@@ -14,10 +14,8 @@ Unlike Lab 3, the listings with missing values are kept.
 """
 
 import hashlib
-import json
 import os
 import warnings
-from collections import Counter
 
 import numpy as np
 import pandas as pd
@@ -34,7 +32,7 @@ except ImportError:  # outside Jupyter
 warnings.filterwarnings("ignore", category=UserWarning)   # includes scikit-learn's ConvergenceWarning
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-__all__ = ["NUMERIC", "CATEGORICAL", "LOCATION", "AMENITIES"]  # functions are added by @public below
+__all__ = ["NUMERIC", "CATEGORICAL", "LOCATION"]  # functions are added by @public below
 
 
 def public(f):
@@ -52,7 +50,6 @@ NUMERIC = ["accommodates", "bedrooms", "beds", "bathrooms", "minimum_nights", "a
            "km_to_center"]
 CATEGORICAL = ["room_type", "neighbourhood"]
 LOCATION = ["latitude", "longitude"]   # where the listing is: raw, in degrees
-AMENITIES = []        # filled in by _prepare: the amenities of at least 5% of the listings
 THRESHOLD = 300       # a listing is "premium" above this price per night, in euros
 
 N_TRAIN, N_TEST = 1500, 2000
@@ -83,16 +80,9 @@ def _prepare():
     # distance to Dam Square (52.3731 N, 4.8932 E) in km, as in Lab 2
     df["km_to_center"] = np.hypot((df["longitude"] - 4.8932) * 111.32 * np.cos(np.radians(52.3731)),
                                   (df["latitude"] - 52.3731) * 110.57)
-    # the amenities: one 0/1 column for every amenity of at least 5% of the listings
-    lists = df["amenities"].apply(json.loads)
-    counts = Counter(a for amenities in lists for a in set(amenities))
-    keep = [a for a, n in counts.most_common() if n >= 0.05 * len(df)]
-    AMENITIES[:] = keep
-    amen = pd.DataFrame({a: lists.apply(lambda L, a=a: int(a in L)) for a in keep}, index=df.index)
-    df = pd.concat([df, amen], axis=1)
     df["premium"] = (df["price"] > THRESHOLD).astype(int)
     # no dropna: the gaps stay (Lecture 7)
-    features = NUMERIC + CATEGORICAL + LOCATION + AMENITIES
+    features = NUMERIC + CATEGORICAL + LOCATION
     test = df.sample(N_TEST, random_state=1)
     train = df.drop(test.index).sample(N_TRAIN, random_state=2)
     for name, part in [("train", train), ("test", test)]:
@@ -200,8 +190,7 @@ def setup_ok():
         return _not_yet(str(e))
     gaps = int(X[NUMERIC].isna().any(axis=1).sum())
     _ok(f"You are ready. Your training data: {len(X):,} listings, {X.shape[1]} features "
-        f"({len(NUMERIC)} numbers, {len(CATEGORICAL)} text columns, {len(LOCATION)} coordinates, "
-        f"{len(AMENITIES)} amenities); "
+        f"({len(NUMERIC)} numbers, {len(CATEGORICAL)} text columns, {len(LOCATION)} coordinates); "
         f"{y.mean():.0%} of them are premium, and {gaps} have a gap.<br>"
         f"<span style='color:#555'>{' · '.join(lines)}</span>")
 
