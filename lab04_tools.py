@@ -34,7 +34,7 @@ except ImportError:  # outside Jupyter
 warnings.filterwarnings("ignore", category=UserWarning)   # includes scikit-learn's ConvergenceWarning
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-__all__ = ["NUMERIC", "CATEGORICAL", "AMENITIES"]  # functions are added by @public below
+__all__ = ["NUMERIC", "CATEGORICAL", "LOCATION", "AMENITIES"]  # functions are added by @public below
 
 
 def public(f):
@@ -51,6 +51,7 @@ NUMERIC = ["accommodates", "bedrooms", "beds", "bathrooms", "minimum_nights", "a
            "number_of_reviews", "reviews_per_month", "review_scores_rating", "host_listings", "superhost",
            "km_to_center"]
 CATEGORICAL = ["room_type", "neighbourhood"]
+LOCATION = ["latitude", "longitude"]   # where the listing is: raw, in degrees
 AMENITIES = []        # filled in by _prepare: the amenities of at least 5% of the listings
 THRESHOLD = 300       # a listing is "premium" above this price per night, in euros
 
@@ -91,7 +92,7 @@ def _prepare():
     df = pd.concat([df, amen], axis=1)
     df["premium"] = (df["price"] > THRESHOLD).astype(int)
     # no dropna: the gaps stay (Lecture 7)
-    features = NUMERIC + CATEGORICAL + AMENITIES
+    features = NUMERIC + CATEGORICAL + LOCATION + AMENITIES
     test = df.sample(N_TEST, random_state=1)
     train = df.drop(test.index).sample(N_TRAIN, random_state=2)
     for name, part in [("train", train), ("test", test)]:
@@ -199,7 +200,8 @@ def setup_ok():
         return _not_yet(str(e))
     gaps = int(X[NUMERIC].isna().any(axis=1).sum())
     _ok(f"You are ready. Your training data: {len(X):,} listings, {X.shape[1]} features "
-        f"({len(NUMERIC)} numbers, {len(CATEGORICAL)} text columns, {len(AMENITIES)} amenities); "
+        f"({len(NUMERIC)} numbers, {len(CATEGORICAL)} text columns, {len(LOCATION)} coordinates, "
+        f"{len(AMENITIES)} amenities); "
         f"{y.mean():.0%} of them are premium, and {gaps} have a gap.<br>"
         f"<span style='color:#555'>{' · '.join(lines)}</span>")
 
