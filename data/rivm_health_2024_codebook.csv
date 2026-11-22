@@ -1,0 +1,49 @@
+column,description,unit,rivm_code
+gwb_code,"Region code, the same as in the CBS data",code,WijkenEnBuurten
+municipality,Name of the municipality,name,Gemeentenaam
+region_type,"Country, Municipality, District or Neighborhood",category,SoortRegio
+good_perceived_health,Rates their own health as good or very good,% of adults 18+,GoedErvarenGezondheid
+chronic_condition,Has one or more long-term conditions,% of adults 18+,EenOfMeerLangdurigeAandoeningen
+long_term_limited,Limited in daily activities for a long time,% of adults 18+,LangdurigBeperkt
+limited_by_health,Limited in daily activities because of health,% of adults 18+,BeperktVanwegeGezondheid
+severely_limited_by_health,Severely limited in daily activities because of health,% of adults 18+,ErnstigBeperktVanwegeGezondheid
+high_risk_anxiety_depression,High risk of an anxiety disorder or depression (Kessler-10 scale),% of adults 18+,HoogRisicoAngststoornisOfDepressie
+suicidal_thoughts_12m,Had suicidal thoughts in the last 12 months,% of adults 18+,SuicideGedachtenDeLaatste12Maanden
+anxious_depressed_4w,Felt anxious or depressed in the last 4 weeks,% of adults 18+,AngstDepressiegevoelensAfg4Weken
+much_stress_4w,Had (very) much stress in the last 4 weeks,% of adults 18+,HeelVeelStressAfg4Weken
+low_resilience,Low resilience,% of adults 18+,LageVeerkracht
+high_resilience,High resilience,% of adults 18+,HogeVeerkracht
+control_over_own_life,Has moderate or much control over their own life,% of adults 18+,MatigVeelRegieOverHetEigenLeven
+lonely,Lonely,% of adults 18+,Eenzaam
+very_lonely,Very lonely,% of adults 18+,SterkEenzaam
+emotionally_lonely,Emotionally lonely (misses a close relationship),% of adults 18+,EmotioneelEenzaam
+socially_lonely,Socially lonely (misses a wider circle of people),% of adults 18+,SociaalEenzaam
+gets_support,Gets support from others,% of adults 18+,KrijgtSteunVanAnderen
+informal_caregiver,Gives informal care to a relative or friend,% of adults 18+,Mantelzorger
+volunteer,Does volunteer work,% of adults 18+,Vrijwilligerswerk
+difficulty_making_ends_meet,Has difficulty making ends meet,% of adults 18+,MoeiteMetRondkomen
+overweight,Overweight (BMI 25 or more),% of adults 18+,Overgewicht
+obese,"Severely overweight, obesity (BMI 30 or more)",% of adults 18+,ErnstigOvergewichtObesitas
+smokes,Smokes tobacco,% of adults 18+,RooktTabak
+drinks_alcohol,Drinks alcohol,% of adults 18+,Drinken
+excessive_drinking,"Drinks excessively (more than 14 glasses a week for women, 21 for men)",% of adults 18+,OvermatigDrinken
+meets_alcohol_guideline,"Meets the alcohol guideline (no alcohol, or at most one glass a day)",% of adults 18+,VoldoetAanDeAlcoholrichtlijn
+heavy_drinking,"Drinks heavily (at least once a week 4 or more glasses on one day for women, 6 for men)",% of adults 18+,ZwaarDrinken
+meets_exercise_guideline,Meets the physical activity guideline,% of adults 18+,VoldoetAanDeBeweegrichtlijn
+sports_weekly,Does sports every week,% of adults 18+,WekelijksSporten
+noise_road,Severely annoyed by noise of road traffic,% of adults 18+,ErnstigeGeluidhinderWegverkeer
+noise_road_slow,Severely annoyed by noise of road traffic on roads below 50 km/h,% of adults 18+,ErnstigeGeluidhinderWegverkeer50kmU (46)
+noise_road_fast,Severely annoyed by noise of road traffic on roads above 50 km/h,% of adults 18+,ErnstigeGeluidhinderWegverkeer50kmU (47)
+noise_rail,Severely annoyed by noise of trains,% of adults 18+,ErnstigeGeluidhinderTreinverkeer
+noise_air,Severely annoyed by noise of aircraft,% of adults 18+,ErnstigeGeluidhinderVliegverkeer
+noise_wind_turbines,Severely annoyed by noise of wind turbines,% of adults 18+,ErnstigeGeluidhinderDoorWindturbines
+noise_neighbors,Severely annoyed by noise of neighbors,% of adults 18+,ErsntigeGeluidhinderBuren
+sleep_disturbed_road,Sleep severely disturbed by road traffic,% of adults 18+,ErnstigeSlaapverstoringWegverkeer
+sleep_disturbed_rail,Sleep severely disturbed by trains,% of adults 18+,ErnstigeSlaapverstoringTreinverkeer
+sleep_disturbed_air,Sleep severely disturbed by aircraft,% of adults 18+,ErnstigeSlaapverstoringVliegverkeer
+sleep_disturbed_neighbors,Sleep severely disturbed by neighbors,% of adults 18+,ErnstigeSlaapverstoringBuren
+satisfied_home,Satisfied with their home,% of adults 18+,TevredenMetDeWoning
+satisfied_surroundings,Satisfied with their living environment,% of adults 18+,TevredenMetDeWoonomgeving
+satisfied_green,Satisfied with the green space in their surroundings,% of adults 18+,TevredenMetHetGroenInDeOmgeving
+can_cool_down_inside,Can cool down well inside the home on hot days,% of adults 18+,KanGoedVerkoelingVindenBinnen
+can_cool_down_outside,"Can cool down well outside, near the home, on hot days",% of adults 18+,KanGoedVerkoelingVindenBuiten
