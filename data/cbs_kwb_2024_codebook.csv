@@ -1,0 +1,125 @@
+column,description,unit,cbs_code
+code,"Region code: NL00 (country), GM (municipality), WK (district), BU (neighborhood)",code,gwb_code_10
+code_8,Region code without the letters,code,gwb_code_8
+region_name,Name of the region,name,regio
+municipality,Name of the municipality,name,gm_naam
+region_type,"Country, Municipality, District or Neighborhood",category,recs
+gwb_code,"Region code, as used by CBS to merge tables",code,gwb_code
+boundary_change,Whether the figures can be compared with last year despite boundary changes (see the CBS explanation),code,ind_wbi
+population,Number of inhabitants,count,a_inw
+men,Men,count,a_man
+women,Women,count,a_vrouw
+age_0_14,Inhabitants aged 0 to 14,count,a_00_14
+age_15_24,Inhabitants aged 15 to 24,count,a_15_24
+age_25_44,Inhabitants aged 25 to 44,count,a_25_44
+age_45_64,Inhabitants aged 45 to 64,count,a_45_64
+age_65_plus,Inhabitants aged 65 or older,count,a_65_oo
+unmarried,Never married,count,a_ongeh
+married,Married,count,a_gehuwd
+divorced,Divorced,count,a_gesch
+widowed,Widowed,count,a_verwed
+origin_netherlands,Origin (country of birth of the person or parents): the Netherlands,count,a_nl_all
+origin_europe,"Origin: Europe, excluding the Netherlands",count,a_eur_al
+origin_outside_europe,Origin: outside Europe,count,a_neu_al
+born_netherlands,Born in the Netherlands,count,a_geb_nl
+born_europe,"Born in Europe, excluding the Netherlands",count,a_geb_eu
+born_outside_europe,Born outside Europe,count,a_geb_ne
+second_gen_europe,"Born in the Netherlands, at least one parent born in Europe (excl. the Netherlands)",count,a_gbl_eu
+second_gen_outside_europe,"Born in the Netherlands, at least one parent born outside Europe",count,a_gbl_ne
+births,Live births,count,a_geb
+births_per_1000,"Live births per 1,000 inhabitants","per 1,000 inhabitants",p_geb
+deaths,Deaths,count,a_ste
+deaths_per_1000,"Deaths per 1,000 inhabitants","per 1,000 inhabitants",p_ste
+households,Number of households,count,a_hh
+households_one_person,One-person households,count,a_1p_hh
+households_without_children,Households without children,count,a_hh_z_k
+households_with_children,Households with children,count,a_hh_m_k
+household_size_mean,Average household size,persons,g_hhgro
+population_density,Population density,inhabitants per km2,bev_dich
+dwellings,Number of dwellings,count,a_woning
+dwellings_new,Newly built dwellings,count,a_nb_won
+non_residential,Number of non-residential buildings,count,a_vastg
+non_residential_new,Newly built non-residential buildings,count,a_nb_vastg
+house_value_mean,Average assessed value (WOZ) of dwellings,"x 1,000 euro",g_wozbag
+pct_single_family,Single-family dwellings,%,p_1gezw
+pct_terraced,Terraced houses (single-family),%,p_1gezw_tw
+pct_corner,Corner houses (single-family),%,p_1gezw_hw
+pct_semi_detached,Semi-detached houses (single-family),%,p_1gezw_2w
+pct_detached,Detached houses (single-family),%,p_1gezw_hvw
+pct_multi_family,Multi-family dwellings (apartments),%,p_mgezw
+pct_uninhabited,Uninhabited dwellings,%,p_leegsw
+pct_owner_occupied,Owner-occupied dwellings,%,p_koopw
+pct_rented,"Rented dwellings, total",%,p_huurw
+pct_social_housing,Owned by a housing association,%,p_wcorpw
+pct_other_landlords,Owned by other landlords,%,p_ov_hw
+pct_built_over_10y_ago,Built more than ten years ago,%,p_bj_me10
+pct_built_last_10y,Built in the last ten years,%,p_bj_mi10
+electricity_mean,Average electricity delivered per dwelling,kWh,g_ele
+electricity_returned_mean,Average electricity returned to the grid per dwelling,kWh,g_ele_tr
+gas_use_mean,Average natural gas use per dwelling,m3,g_gas
+pct_district_heating,Dwellings with district heating,%,p_stadsv
+pct_gas_free,Dwellings without natural gas,%,p_won_z
+pct_gas,Dwellings with natural gas,%,p_won_m
+pct_solar,Dwellings with solar panels,%,p_won_zs
+pct_electric_heating,Dwellings mainly heated with electricity,%,p_won_ev
+charging_points,Public charging points for electric cars,count,a_lp_pub
+pupils_primary,Pupils in primary school (po),count,a_po
+pupils_secondary,"Pupils in secondary school, incl. adult secondary education (vo, vavo)",count,a_vovavo
+students_mbo,Students in secondary vocational education (mbo),count,a_mbo
+students_hbo,Students in higher professional education (hbo),count,a_hbo
+students_university,Students at a university (wo),count,a_wo
+edu_low,"Highest education: primary school, vmbo, mbo1 (low)",count,a_opl_bvm
+edu_middle,"Highest education: havo, vwo, mbo2-4 (middle)",count,a_opl_hvm
+edu_high,"Highest education: hbo, wo (higher professional, university)",count,a_opl_hw
+employed,Employed labour force,count,a_arb_wz
+pct_net_participation,Net labour participation,%,p_arb_pp
+pct_employees,"Employees, as a share of the employed",%,p_arb_wn
+pct_permanent_contract,Employees with a permanent contract,%,p_arb_wv
+pct_flexible_contract,Employees with a flexible contract,%,p_arb_wf
+pct_self_employed,Self-employed,%,p_arb_zs
+income_recipients,Number of persons with an income,count,a_inkont
+income_per_recipient,Average income per income recipient,"x 1,000 euro",g_ink_po
+income_per_inhabitant,Average income per inhabitant,"x 1,000 euro",g_ink_pi
+pct_lowest40_income_persons,Persons in the 40% with the lowest national income,%,p_ink_li
+pct_highest20_income_persons,Persons in the 20% with the highest national income,%,p_ink_hi
+pct_poverty,Persons in poverty,%,p_ink_ar
+pct_near_poverty,Persons up to 25% above the poverty line,%,p_ink_ba
+household_income_standardized,Average standardized household income,"x 1,000 euro",g_hh_sti
+pct_lowest40_income_households,Households in the 40% with the lowest national income,%,p_hh_li
+pct_highest20_income_households,Households in the 20% with the highest national income,%,p_hh_hi
+household_wealth_median,Median wealth of private households,"x 1,000 euro",m_hh_ver
+benefit_social_assistance,Persons receiving social assistance (bijstand),count,a_soz_wb
+benefit_disability,Persons receiving a disability benefit (AO),count,a_soz_ao
+benefit_unemployment,Persons receiving an unemployment benefit (WW),count,a_soz_ww
+benefit_state_pension,Persons receiving the state pension (AOW),count,a_soz_ow
+youth_care,Young people receiving youth care,count,a_jz_tn
+pct_youth_care,"Young people receiving youth care, as a share of all young people",%,p_jz_tn
+social_support_clients,Clients of social support (Wmo),count,a_wmo_t
+social_support_per_1000,"Clients of social support (Wmo) per 1,000 inhabitants","per 1,000 inhabitants",p_wmo_t
+businesses,"Business establishments, total",count,a_bedv
+businesses_agriculture,"A: agriculture, forestry and fishing",count,a_bed_a
+businesses_industry_energy,B-F: industry and energy,count,a_bed_bf
+businesses_trade_hospitality,"G+I: trade, hotels and restaurants",count,a_bed_gi
+businesses_transport_ict,"H+J: transport, information and communication",count,a_bed_hj
+businesses_finance_real_estate,K-L: financial services and real estate,count,a_bed_kl
+businesses_business_services,M-N: business services,count,a_bed_mn
+businesses_government_education_care,"O-Q: government, education and care",count,a_bed_oq
+businesses_culture_other,"R-U: culture, recreation and other services",count,a_bed_ru
+cars,Private passenger cars,count,apaupr
+cars_petrol,Private passenger cars on petrol,count,abstbpr
+cars_other_fuel,Private passenger cars on other fuels,count,abstnbpr
+cars_per_household,Private passenger cars per household,per household,gpauhhpr
+cars_per_km2,Private passenger cars per km2,per km2,gpaukmpr
+motorcycles,Private motorcycles,count,am2wpr
+dist_general_practitioner,Average distance to a general practitioner,km,g_afs_hp
+dist_supermarket,Average distance to a large supermarket,km,g_afs_gs
+dist_daycare,Average distance to a daycare center,km,g_afs_kv
+dist_school,Average distance to a school,km,g_afs_sc
+schools_within_3km,Average number of schools within 3 km,count,g_3km_sc
+area_total_ha,Total area,ha,a_opp_ha
+area_land_ha,Land area,ha,a_lan_ha
+area_water_ha,Water area,ha,a_wat_ha
+postcode_most_common,Most common postcode,code,pst_mvp
+postcode_coverage,Coverage of the most common postcode (category),code,pst_dekp
+urbanity,Degree of urbanization: 1 very strongly urban to 5 not urban,code,ste_mvs
+address_density,Address density of the surroundings,per km2,ste_oad

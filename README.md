@@ -17,6 +17,7 @@ Open a notebook in Google Colab with the links below, then choose **File → Sav
 | Lab 4: Missing values, trees and forests | Thursday, November 19 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/lab04.ipynb) |
 | Programming assignment 1 (template) | due Sunday, November 15 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/assignment1.ipynb) |
 | Programming assignment 2 (template) | due Sunday, November 29 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/assignment2.ipynb) |
+| Final group project (starter) | due Sunday, December 13 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/project_starter.ipynb) |
 
 ## Data
 
@@ -26,6 +27,8 @@ Open a notebook in Google Colab with the links below, then choose **File → Sav
 | `data/student_survey_raw.csv` | the same survey with typical data-quality problems |
 | `data/student-por.csv`, `data/student.txt` | Student Performance (Portuguese course, 649 students) and its codebook, for Programming assignment 1 |
 | `data/adult.csv`, `data/adult.names` | Adult (1994 US census, a random sample of 10,000 of the 48,842 adults) and its codebook, for Programming assignment 2 |
+| `data/cbs_kwb_2024.csv.gz`, `data/cbs_kwb_2024_codebook.csv` | CBS key figures for all municipalities, districts and neighborhoods of the Netherlands, 2024, with English column names, and the codebook, for the final group project |
+| `data/hotel_reviews.csv.gz` | 515,738 reviews of 1,492 hotels in six European cities, for the final group project |
 
 The notebooks read these files directly from this repository, so you do not need to download them. Labs 1 and 2 download their data, the Airbnb listings of Amsterdam, directly from [Inside Airbnb](https://insideairbnb.com).
 
@@ -36,3 +39,7 @@ The Airbnb data of Labs 1 and 2 come from [Inside Airbnb](https://insideairbnb.c
 The data of Programming assignment 1 are the Student Performance data of P. Cortez (2008), UCI Machine Learning Repository, [doi:10.24432/C5TG7T](https://doi.org/10.24432/C5TG7T), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); see also Cortez and Silva (2008), *Using data mining to predict secondary school student performance*, FUBUTEC 2008. The files are copied unchanged.
 
 The data of Programming assignment 2 are a random sample of 10,000 adults (`random_state=0`) from the Adult data of B. Becker and R. Kohavi (1996), UCI Machine Learning Repository, [doi:10.24432/C5XW20](https://doi.org/10.24432/C5XW20), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); see also Kohavi (1996), *Scaling up the accuracy of naive-Bayes classifiers: a decision-tree hybrid*, KDD-96. The training and test files of UCI are put together, with a header row; the values are as published, except that the final period of the test labels is removed. The codebook `adult.names` is copied unchanged.
+
+The CBS data of the final group project are the *Kerncijfers wijken en buurten 2024* of Statistics Netherlands (CBS), version of October 2026, [cbs.nl](https://www.cbs.nl/nl-nl/maatwerk/2026/42/kerncijfers-wijken-en-buurten-2024), reused under the [CBS terms](https://www.cbs.nl/en-gb/about-us/website/copyright) (CC BY 4.0). The column names are translated into English, the region types (Gemeente, Wijk, Buurt) are written in English, and the CBS marker "." for an unknown value is left empty; the values are as published. The codebook lists the original CBS code of every column.
+
+The hotel reviews are the *515K Hotel Reviews Data in Europe* of J. Liu (2017), [Kaggle](https://www.kaggle.com/datasets/jiashenliu/515k-hotel-reviews-data-in-europe), released under CC0 (public domain). The file is compressed with gzip; its content is unchanged.
