@@ -15,6 +15,7 @@ Open a notebook in Google Colab with the links below, then choose **File → Sav
 | Lab 2: Nearest neighbors and linear regression | Thursday, November 5 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/lab02.ipynb) |
 | Lab 3: Linear classification and preprocessing | Thursday, November 12 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/lab03.ipynb) |
 | Lab 4: Missing values, trees and forests | Thursday, November 19 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/lab04.ipynb) |
+| Lab 5: Catching fraud, the right metric and the threshold | Thursday, November 26 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/lab05.ipynb) |
 | Programming assignment 1 (template) | due Sunday, November 15 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/assignment1.ipynb) |
 | Programming assignment 2 (template) | due Sunday, November 29 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/assignment2.ipynb) |
 | Final group project (starter) | due Sunday, December 13 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/batuatas/MLwPython-labs/blob/main/project_starter.ipynb) |
@@ -29,13 +30,16 @@ Open a notebook in Google Colab with the links below, then choose **File → Sav
 | `data/adult.csv`, `data/adult.names` | Adult (1994 US census, a random sample of 10,000 of the 48,842 adults) and its codebook, for Programming assignment 2 |
 | `data/cbs_kwb_2024.csv.gz`, `data/cbs_kwb_2024_codebook.csv` | CBS key figures for all municipalities, districts and neighborhoods of the Netherlands, 2024, with English column names, and the codebook, for the final group project |
 | `data/rivm_health_2024.csv.gz`, `data/rivm_health_2024_codebook.csv` | RIVM health estimates for the same regions, 2024, adults, with English column names, and the codebook, for the final group project |
+| `data/creditcard_fraud_sample.csv.gz` | 50,000 card payments, of which 492 are fraud, for Lab 5 |
 | `data/hotel_reviews.csv.gz` | 515,738 reviews of 1,492 hotels in six European cities, for the final group project |
 
-The notebooks read these files directly from this repository, so you do not need to download them. Labs 1 and 2 download their data, the Airbnb listings of Amsterdam, directly from [Inside Airbnb](https://insideairbnb.com).
+The notebooks read these files directly from this repository, so you do not need to download them. Labs 1 to 4 download their data, the Airbnb listings of Amsterdam, directly from [Inside Airbnb](https://insideairbnb.com).
 
 ## Credits
 
-The Airbnb data of Labs 1 and 2 come from [Inside Airbnb](https://insideairbnb.com) (Amsterdam, 16 September 2026) and are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The notebook downloads them from Inside Airbnb's website and keeps 20 of the 90 columns of the listings.
+The Airbnb data of Labs 1 to 4 come from [Inside Airbnb](https://insideairbnb.com) (Amsterdam, 16 September 2026) and are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The notebook downloads them from Inside Airbnb's website and keeps 20 of the 90 columns of the listings.
+
+The card payments of Lab 5 are a sample of the *Credit Card Fraud Detection* data of the Machine Learning Group of the Universite Libre de Bruxelles, [Kaggle](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud), licensed under the [Open Database License](https://opendatacommons.org/licenses/odbl/1-0/); see Dal Pozzolo, Caelen, Johnson and Bontempi (2015), *Calibrating probability with undersampling for unbalanced classification*, IEEE SSCI 2015. All 492 frauds are kept, with a random sample of 49,508 of the 284,315 honest payments (`random_state=0`); the column `Class` is renamed `fraud`, and the values are as published.
 
 The data of Programming assignment 1 are the Student Performance data of P. Cortez (2008), UCI Machine Learning Repository, [doi:10.24432/C5TG7T](https://doi.org/10.24432/C5TG7T), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); see also Cortez and Silva (2008), *Using data mining to predict secondary school student performance*, FUBUTEC 2008. The files are copied unchanged.
 
